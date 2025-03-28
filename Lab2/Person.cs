@@ -10,7 +10,7 @@ namespace Lab2
     class Person
     {
         private string _name { get; }
-        private string _surname { get;}
+        private string _surname { get; }
         private string _email { get; }
         private DateTime _dateOfBirth { get; }
 
