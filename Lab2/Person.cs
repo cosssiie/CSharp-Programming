@@ -1,40 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
-
-namespace Lab2
+﻿namespace Lab2
 {
-    class Person
+    public class Person
     {
-        private string _name { get; }
-        private string _surname { get; }
-        private string _email { get; }
-        private DateTime _dateOfBirth { get; }
+        public string Name { get; }
+        public string Surname { get; }
+        public string? Email { get; }
+        public DateTime? DateOfBirth { get; }
 
-
-        public Person(string name, string surname, string email, DateTime dateOfBirth)
+        public Person(string name, string surname, string? email, DateTime dateOfBirth)
         {
-            this._name = name;
-            this._surname = surname;
-            this._email = email;
-            this._dateOfBirth = dateOfBirth;
+            Name = name;
+            Surname = surname;
+            Email = email;
+            DateOfBirth = dateOfBirth;
         }
 
-        public Person(string name, string surname, string email)
+        public Person(string name, string surname, string? email)
         {
-            this._name = name;
-            this._surname = surname;
-            this._email = email;
+            Name = name;
+            Surname = surname;
+            Email = email;
+            DateOfBirth = null;
         }
 
         public Person(string name, string surname, DateTime dateOfBirth)
         {
-            this._name = name;
-            this._surname = surname;
-            this._dateOfBirth = dateOfBirth;
+            Name = name;
+            Surname = surname;
+            Email = null;
+            DateOfBirth = dateOfBirth;
         }
     }
 }
