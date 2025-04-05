@@ -103,11 +103,7 @@ namespace Lab2
                     PersonInfoManager manager = new PersonInfoManager(person);
 
                     int? age = await Task.Run(() => manager.GetAge());
-                    if (!age.HasValue || age < 0 || age > 135)
-                    {
-                        MessageBox.Show("Error: Invalid age!", "Invalid age", MessageBoxButton.OK, MessageBoxImage.Error);
-                        return;
-                    }
+                    await Task.Run(() => EmailValidation.Validate(Email));
 
                     string sunSign = await Task.Run(() => manager.GetSunSign());
                     string chineseSign = await Task.Run(() => manager.GetChineseSign());
@@ -137,9 +133,21 @@ namespace Lab2
                     MessageBox.Show("Date of birth is required.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+            catch (FutureDateOfBirthException ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Invalid Date", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            catch (TooOldDateOfBirthException ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Invalid Date", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            catch (InvalidEmailException ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Invalid Email", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"An error occurred: {ex.Message}", "Unexpected Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
             {
