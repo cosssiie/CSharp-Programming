@@ -102,13 +102,11 @@ namespace Lab2
                     Person person = new Person(Name!, Surname!, Email, DateOfBirth.Value);
                     PersonInfoManager manager = new PersonInfoManager(person);
 
-                    int? age = await Task.Run(() => manager.GetAge());
-                    await Task.Run(() => EmailValidation.Validate(Email));
-
                     string sunSign = await Task.Run(() => manager.GetSunSign());
                     string chineseSign = await Task.Run(() => manager.GetChineseSign());
                     bool isAdult = await Task.Run(() => manager.IsAdult());
                     bool isBirthday = await Task.Run(() => manager.IsBirthday());
+                    int? age = await Task.Run(() => manager.GetAge());
 
                     string results =
                         $"Name: {Name}\n" +

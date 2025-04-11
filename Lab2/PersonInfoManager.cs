@@ -13,23 +13,12 @@ namespace Lab2
 
         public int? GetAge()
         {
-
             DateTime today = DateTime.Today;
             DateTime date = _person.DateOfBirth.Value;
             int age = today.Year - date.Year;
 
             if (date > today.AddYears(-age))
                 age--;
-
-            if (age < 0)
-            {
-                throw new FutureDateOfBirthException("The date of birth cannot be in the future.");
-            }
-
-            if (age > 135)
-            {
-                throw new TooOldDateOfBirthException("The date of birth is too old.");
-            }
 
             return age;
         }
