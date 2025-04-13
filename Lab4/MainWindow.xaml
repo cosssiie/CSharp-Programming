@@ -7,37 +7,38 @@
         mc:Ignorable="d"
         Title="Users Table" Height="500" Width="900">
 
-    <Grid Margin="0,0,0,0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+	<Grid Margin="0,0,0,0">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,60">
-            <Button x:Name="AddUserButton" Content="Add" Height="40" Width="110" Margin="0,0,20,0" Background="#FF4DCC31" FontSize="18" FontWeight="Bold" Foreground="#ffff"></Button>
-            <Button x:Name="EditUserButton" Content="Edit" Height="40" Width="110" Margin="0,0,20,0" FontSize="18" FontWeight="Bold" Background="#FFE8E411" Foreground="#ffff"></Button>
-            <Button x:Name="DeleteUserButton" Content="Delete" Height="40" Width="110" Margin="0,0,20,0" Background="#FFFA0F0F" FontSize="18" FontWeight="Bold" Foreground="#ffff"></Button>
-        </StackPanel>
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,60">
+			<Button x:Name="AddUserButton" Content="Add" Height="40" Width="110" Margin="0,0,20,0" Background="#FF4DCC31" FontSize="18" FontWeight="Bold" Foreground="#ffff"></Button>
+			<Button x:Name="EditUserButton" Content="Edit" Height="40" Width="110" Margin="0,0,20,0" FontSize="18" FontWeight="Bold" Background="#FFE8E411" Foreground="#ffff"></Button>
+			<Button x:Name="DeleteUserButton" Content="Delete" Height="40" Width="110" Margin="0,0,20,0" Background="#FFFA0F0F" FontSize="18" FontWeight="Bold" Foreground="#ffff"></Button>
+		</StackPanel>
 
-        <DataGrid x:Name="UserDataGrid"
-                Grid.Row="1"
-                AutoGenerateColumns="False"
-                CanUserSortColumns="True"
-                IsReadOnly="True"
-                SelectionMode="Single"
-                Margin="0,0,0,10">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="50"/>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
-                <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" Width="*"/>
-                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
-                <DataGridTextColumn Header="Date Of Birth" Binding="{Binding DateOfBirth}" Width="*"/>
-                <DataGridTextColumn Header="Age" Binding="{Binding Age}" Width="*"/>
-                <DataGridTextColumn Header="Sun Sign" Binding="{Binding SunSign}" Width="*"/>
-                <DataGridTextColumn Header="Chinese Sign" Binding="{Binding ChineseSign}" Width="*"/>
-                <DataGridTextColumn Header="Is Birthday" Binding="{Binding IsBirthday}" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
-    </Grid>
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,90,0,10">
+			<TextBox x:Name="FilterTextBox" Width="200" Margin="0,0,10,0"/>
+			<Button x:Name="FilterButton" Content="Filter" Width="100" Margin="0,0,10,0"/>
+		</StackPanel>
+
+		<DataGrid x:Name="UserDataGrid"
+		  Grid.Row="1"
+          AutoGenerateColumns="False"
+          IsReadOnly="True"
+          ItemsSource="{Binding Users}"
+          SelectionMode="Single"
+          Margin="0,0,0,10">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="50"/>
+				<DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
+				<DataGridTextColumn Header="Surname" Binding="{Binding Surname}" Width="*"/>
+				<DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
+				<DataGridTextColumn Header="Date Of Birth" Binding="{Binding DateOfBirth}" Width="*"/>	
+			</DataGrid.Columns>
+		</DataGrid>
+	</Grid>
 </Window>
