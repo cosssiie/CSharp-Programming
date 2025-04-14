@@ -14,12 +14,12 @@ namespace Lab4
             Name = name;
             Surname = surname;
 
-            ValidateDateOfBirth(dateOfBirth);
+            Validation.ValidateDateOfBirth(dateOfBirth);
             DateOfBirth = dateOfBirth;
 
             if (!string.IsNullOrWhiteSpace(email))
             {
-                EmailValidation.Validate(email);
+                Validation.ValidateEmail(email);
                 Email = email;
             }
         }
@@ -31,7 +31,7 @@ namespace Lab4
 
             if (!string.IsNullOrWhiteSpace(email))
             {
-                EmailValidation.Validate(email);
+                Validation.ValidateEmail(email);
                 Email = email;
             }
 
@@ -43,23 +43,10 @@ namespace Lab4
             Name = name;
             Surname = surname;
 
-            ValidateDateOfBirth(dateOfBirth);
+            Validation.ValidateDateOfBirth(dateOfBirth);
             DateOfBirth = dateOfBirth;
 
             Email = null;
-        }
-
-        private void ValidateDateOfBirth(DateTime dateOfBirth)
-        {
-            DateTime today = DateTime.Today;
-            int age = today.Year - dateOfBirth.Year;
-            if (dateOfBirth > today.AddYears(-age))
-                age--;
-
-            if (age < 0)
-                throw new FutureDateOfBirthException("The date of birth cannot be in the future.");
-            if (age > 135)
-                throw new TooOldDateOfBirthException("The date of birth is too old.");
         }
     }
 }

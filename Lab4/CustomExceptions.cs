@@ -16,5 +16,10 @@ namespace Lab4
     {
         public InvalidEmailException(string message) : base(message) { }
     }
+
+    public class DuplicateIdException : Exception
+    {
+        public DuplicateIdException(string message) : base(message) { }
+    }
 }
 
