@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace Lab4
 {
@@ -9,10 +10,15 @@ namespace Lab4
         public string Surname { get; set; }
         public string Email { get; set; }
         public DateTime? DateOfBirth { get; set; }
-        public int? Age { get; set; } 
-        public bool? IsAdult { get; set; } 
+        [JsonIgnore]
+        public int? Age { get; set; }
+        [JsonIgnore]
+        public bool? IsAdult { get; set; }
+        [JsonIgnore]
         public string SunSign { get; set; }
-        public string ChineseSign { get; set; } 
+        [JsonIgnore]
+        public string ChineseSign { get; set; }
+        [JsonIgnore]
         public bool? IsBirthday { get; set; }
     }
 }

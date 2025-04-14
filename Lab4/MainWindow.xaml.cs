@@ -11,27 +11,27 @@ namespace Lab4
     public partial class MainWindow : Window
     {
         private List<User> _users;
+        private readonly string _jsonFilePath;
 
         public MainWindow()
         {
             InitializeComponent();
             _users = new List<User>();
+            _jsonFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\users.json");
             LoadJsonDataAsync();
-            UserDataGrid.ItemsSource = _users;
         }
 
         private async void LoadJsonDataAsync()
         {
             try
             {
-                string jsonFilePath = "users.json";
-                if (File.Exists(jsonFilePath))
+                if (File.Exists(_jsonFilePath))
                 {
-                    string jsonData = await File.ReadAllTextAsync(jsonFilePath);
+                    Console.WriteLine($"Loading from: {_jsonFilePath}");
+                    string jsonData = await File.ReadAllTextAsync(_jsonFilePath);
                     var loadedUsers = JsonConvert.DeserializeObject<List<User>>(jsonData) ?? new List<User>();
 
                     var validationErrors = new List<string>();
-
                     await Task.Run(() => ProcessUsersAsync(loadedUsers, validationErrors));
 
                     UserDataGrid.ItemsSource = null;
@@ -46,7 +46,7 @@ namespace Lab4
                 else
                 {
                     _users = new List<User>();
-                    MessageBox.Show("JSON file not found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show($"JSON file not found at: {_jsonFilePath}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             catch (Exception ex)
@@ -129,7 +129,7 @@ namespace Lab4
                 }
 
                 try
-                {
+                {         
                     var person = newUser.DateOfBirth.HasValue
                         ? new Person(newUser.Name, newUser.Surname, newUser.Email, newUser.DateOfBirth.Value)
                         : new Person(newUser.Name, newUser.Surname, newUser.Email);
@@ -142,7 +142,7 @@ namespace Lab4
                     newUser.IsBirthday = manager.IsBirthday();
 
                     _users.Add(newUser);
-                    //SaveUsersToJson();
+                    SaveUsersToJson();
                     UserDataGrid.ItemsSource = null;
                     UserDataGrid.ItemsSource = _users;
                 }
@@ -153,18 +153,19 @@ namespace Lab4
             }
         }
 
-        //private void SaveUsersToJson()
-        //{
-        //    try
-        //    {            
-        //        string jsonData = JsonConvert.SerializeObject(_users, Formatting.Indented);
-        //        Console.WriteLine(jsonData);
-        //        File.WriteAllText("users.json", jsonData);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show($"Error saving to JSON: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-        //    }
-        //}
+        private void SaveUsersToJson()
+        {
+            try
+            {
+                string jsonData = JsonConvert.SerializeObject(_users, Formatting.Indented);
+                Console.WriteLine($"Saving to: {_jsonFilePath}");
+                Console.WriteLine(jsonData);
+                File.WriteAllText(_jsonFilePath, jsonData);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving to JSON: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 }
