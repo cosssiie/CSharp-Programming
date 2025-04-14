@@ -16,8 +16,8 @@
 
 		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,60">
 			<Button x:Name="AddUserButton" Content="Add" Height="40" Width="110" Margin="0,0,20,0" Background="#FF4DCC31" FontSize="18" FontWeight="Bold" Foreground="#ffff" Click="AddUserButton_Click"/>
-			<Button x:Name="EditUserButton" Content="Edit" Height="40" Width="110" Margin="0,0,20,0" FontSize="18" FontWeight="Bold" Background="#FFE8E411" Foreground="#ffff"></Button>
-			<Button x:Name="DeleteUserButton" Content="Delete" Height="40" Width="110" Margin="0,0,20,0" Background="#FFFA0F0F" FontSize="18" FontWeight="Bold" Foreground="#ffff"></Button>
+			<Button x:Name="EditUserButton" Content="Edit" Height="40" Width="110" Margin="0,0,20,0" FontSize="18" FontWeight="Bold" Background="#FFE8E411" Foreground="#ffff" Click="EditUserButton_Click"/>
+			<Button x:Name="DeleteUserButton" Content="Delete" Height="40" Width="110" Margin="0,0,20,0" Background="#FFFA0F0F" FontSize="18" FontWeight="Bold" Foreground="#ffff" Click="DeleteUserButton_Click"/>		
 		</StackPanel>
 
 		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,90,0,10">

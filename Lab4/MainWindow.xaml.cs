@@ -153,6 +153,66 @@ namespace Lab4
             }
         }
 
+        private void EditUserButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (UserDataGrid.SelectedItem is User selectedUser)
+            {
+                var editWindow = new EditUserWindow(selectedUser);
+                if (editWindow.ShowDialog() == true)
+                {
+                    var updatedUser = editWindow.User;
+
+                    try
+                    {
+                        var person = updatedUser.DateOfBirth.HasValue
+                            ? new Person(updatedUser.Name, updatedUser.Surname, updatedUser.Email, updatedUser.DateOfBirth.Value)
+                            : new Person(updatedUser.Name, updatedUser.Surname, updatedUser.Email);
+
+                        var manager = new PersonInfoManager(person);
+                        updatedUser.Age = manager.GetAge();
+                        updatedUser.IsAdult = manager.IsAdult();
+                        updatedUser.SunSign = manager.GetSunSign();
+                        updatedUser.ChineseSign = manager.GetChineseSign();
+                        updatedUser.IsBirthday = manager.IsBirthday();
+
+                        int index = _users.FindIndex(u => u.ID == selectedUser.ID);
+                        _users[index] = updatedUser;
+                        SaveUsersToJson();
+                        UserDataGrid.ItemsSource = null;
+                        UserDataGrid.ItemsSource = _users;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error editing user: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a user to edit.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void DeleteUserButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (UserDataGrid.SelectedItem is User selectedUser)
+            {
+                var result = MessageBox.Show($"Are you sure you want to delete user {selectedUser.Name} {selectedUser.Surname} (ID: {selectedUser.ID})?",
+                                             "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    _users.Remove(selectedUser);
+                    SaveUsersToJson();
+                    UserDataGrid.ItemsSource = null;
+                    UserDataGrid.ItemsSource = _users;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a user to delete.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
         private void SaveUsersToJson()
         {
             try
