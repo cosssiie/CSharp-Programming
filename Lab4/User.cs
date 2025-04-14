@@ -9,5 +9,10 @@ namespace Lab4
         public string Surname { get; set; }
         public string Email { get; set; }
         public DateTime? DateOfBirth { get; set; }
+        public int? Age { get; set; } 
+        public bool? IsAdult { get; set; } 
+        public string SunSign { get; set; }
+        public string ChineseSign { get; set; } 
+        public bool? IsBirthday { get; set; }
     }
 }

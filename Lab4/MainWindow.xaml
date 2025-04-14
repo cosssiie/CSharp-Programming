@@ -37,7 +37,12 @@
 				<DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
 				<DataGridTextColumn Header="Surname" Binding="{Binding Surname}" Width="*"/>
 				<DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
-				<DataGridTextColumn Header="Date Of Birth" Binding="{Binding DateOfBirth}" Width="*"/>	
+				<DataGridTextColumn Header="Date Of Birth" Binding="{Binding DateOfBirth}" Width="*"/>
+				<DataGridTextColumn Header="Age" Binding="{Binding Age}" Width="50"/>
+				<DataGridCheckBoxColumn Header="Is Adult" Binding="{Binding IsAdult}" Width="70"/>
+				<DataGridTextColumn Header="Sun Sign" Binding="{Binding SunSign}" Width="100"/>
+				<DataGridTextColumn Header="Chinese Sign" Binding="{Binding ChineseSign}" Width="100"/>
+				<DataGridCheckBoxColumn Header="Is Birthday" Binding="{Binding IsBirthday}" Width="80"/>
 			</DataGrid.Columns>
 		</DataGrid>
 	</Grid>
