@@ -252,8 +252,6 @@ namespace Lab4
             try
             {
                 string jsonData = JsonConvert.SerializeObject(_users, Formatting.Indented);
-                Console.WriteLine($"Saving to: {_jsonFilePath}");
-                Console.WriteLine(jsonData);
                 File.WriteAllText(_jsonFilePath, jsonData);
             }
             catch (Exception ex)

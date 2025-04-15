@@ -14,28 +14,30 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" Margin="26,99,26,139" Height="40">
+        <StackPanel Orientation="Horizontal" Margin="32,104,32,134" Height="40">
             <TextBox x:Name="FilterName" Width="82" Margin="5" />
             <TextBox x:Name="FilterSurname" Width="77" Margin="5"/>
             <TextBox x:Name="FilterEmail" Width="85" Margin="5" />
             <DatePicker x:Name="FilterDOB" Width="130" Margin="5" />
             <TextBox x:Name="FilterAge" Width="60" Margin="5"/>
-            <ComboBox x:Name="FilterIsAdult" Width="80" Margin="5">
+            <ComboBox x:Name="FilterIsAdult" Width="60" Margin="5">
                 <ComboBoxItem Content="Any" IsSelected="True"/>
                 <ComboBoxItem Content="True"/>
                 <ComboBoxItem Content="False"/>
             </ComboBox>
             <TextBox x:Name="FilterSunSign" Width="100" Margin="5" />
             <TextBox x:Name="FilterChineseSign" Width="100" Margin="5" />
-            <ComboBox x:Name="FilterIsBirthday" Width="61" Margin="5">
+            <ComboBox x:Name="FilterIsBirthday" Width="60" Margin="5">
                 <ComboBoxItem Content="Any" IsSelected="True" />
                 <ComboBoxItem Content="True" />
                 <ComboBoxItem Content="False" />
             </ComboBox>
         </StackPanel>
-        <Button Content="Apply Filter" Margin="306,174,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="ApplyFilterButton_Click" />
-        <Button Content="Reset Filters" Margin="513,174,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="ResetFiltersButton_Click" RenderTransformOrigin="2.742,-0.048"/>
 
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,144,0,94" Height="40">
+            <Button Content="Apply Filter" Margin="0,0,20,0" HorizontalAlignment="Center" VerticalAlignment="Top" Click="ApplyFilterButton_Click" />
+            <Button Content="Reset Filters" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Click="ResetFiltersButton_Click"/>
+        </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,38,0,0" VerticalAlignment="Top">
             <Button x:Name="AddUserButton" Content="Add" Height="40" Width="110" Margin="0,0,20,0" Background="#FF4DCC31" FontSize="18" FontWeight="Bold" Foreground="#ffff" Click="AddUserButton_Click"/>
