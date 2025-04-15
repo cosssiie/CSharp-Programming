@@ -16,21 +16,33 @@ namespace Lab4
         {
             try
             {
+                ErrorTextBlock.Text = "";
+
                 if (!int.TryParse(IdTextBox.Text, out int id) || id <= 0)
-                    throw new Exception("ID must be a positive integer.");
+                    throw new Exception("ID must be a positive Integer.");
+
+                if (string.IsNullOrWhiteSpace(NameTextBox.Text))
+                    throw new Exception("Name is required.");
+
+                if (string.IsNullOrWhiteSpace(SurnameTextBox.Text))
+                    throw new Exception("Surname is required.");
+
+                if (string.IsNullOrWhiteSpace(EmailTextBox.Text))
+                    throw new Exception("Email is required.");
+
+                if (!DateOfBirthPicker.SelectedDate.HasValue)
+                    throw new Exception("Date of Birth is required.");
 
                 var user = new User
                 {
                     ID = id,
-                    Name = NameTextBox.Text,
-                    Surname = SurnameTextBox.Text,
-                    Email = string.IsNullOrWhiteSpace(EmailTextBox.Text) ? null : EmailTextBox.Text,
+                    Name = NameTextBox.Text.Trim(),
+                    Surname = SurnameTextBox.Text.Trim(),
+                    Email = EmailTextBox.Text.Trim(),
                     DateOfBirth = DateOfBirthPicker.SelectedDate
                 };
 
-                var person = user.DateOfBirth.HasValue
-                    ? new Person(user.Name, user.Surname, user.Email, user.DateOfBirth.Value)
-                    : new Person(user.Name, user.Surname, user.Email);
+                var person = new Person(user.Name, user.Surname, user.Email, user.DateOfBirth.Value);
 
                 User = user;
                 DialogResult = true;
