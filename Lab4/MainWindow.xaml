@@ -5,45 +5,63 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab4"
         mc:Ignorable="d"
-        Title="Users Table" Height="500" Width="900">
+        Title="Users Table" Height="550" Width="920">
 
-	<Grid Margin="0,0,0,0">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="Auto"/>
-		</Grid.RowDefinitions>
+    <Grid Margin="0,0,0,0" Height="550">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,60">
-			<Button x:Name="AddUserButton" Content="Add" Height="40" Width="110" Margin="0,0,20,0" Background="#FF4DCC31" FontSize="18" FontWeight="Bold" Foreground="#ffff" Click="AddUserButton_Click"/>
-			<Button x:Name="EditUserButton" Content="Edit" Height="40" Width="110" Margin="0,0,20,0" FontSize="18" FontWeight="Bold" Background="#FFE8E411" Foreground="#ffff" Click="EditUserButton_Click"/>
-			<Button x:Name="DeleteUserButton" Content="Delete" Height="40" Width="110" Margin="0,0,20,0" Background="#FFFA0F0F" FontSize="18" FontWeight="Bold" Foreground="#ffff" Click="DeleteUserButton_Click"/>		
-		</StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="26,99,26,139" Height="40">
+            <TextBox x:Name="FilterName" Width="82" Margin="5" />
+            <TextBox x:Name="FilterSurname" Width="77" Margin="5"/>
+            <TextBox x:Name="FilterEmail" Width="85" Margin="5" />
+            <DatePicker x:Name="FilterDOB" Width="130" Margin="5" />
+            <TextBox x:Name="FilterAge" Width="60" Margin="5"/>
+            <ComboBox x:Name="FilterIsAdult" Width="80" Margin="5">
+                <ComboBoxItem Content="Any" IsSelected="True"/>
+                <ComboBoxItem Content="True"/>
+                <ComboBoxItem Content="False"/>
+            </ComboBox>
+            <TextBox x:Name="FilterSunSign" Width="100" Margin="5" />
+            <TextBox x:Name="FilterChineseSign" Width="100" Margin="5" />
+            <ComboBox x:Name="FilterIsBirthday" Width="61" Margin="5">
+                <ComboBoxItem Content="Any" IsSelected="True" />
+                <ComboBoxItem Content="True" />
+                <ComboBoxItem Content="False" />
+            </ComboBox>
+        </StackPanel>
+        <Button Content="Apply Filter" Margin="306,174,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="ApplyFilterButton_Click" />
+        <Button Content="Reset Filters" Margin="513,174,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="ResetFiltersButton_Click" RenderTransformOrigin="2.742,-0.048"/>
 
-		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,90,0,10">
-			<TextBox x:Name="FilterTextBox" Width="200" Margin="0,0,10,0"/>
-			<Button x:Name="FilterButton" Content="Filter" Width="100" Margin="0,0,10,0"/>
-		</StackPanel>
 
-		<DataGrid x:Name="UserDataGrid"
-		  Grid.Row="1"
-          AutoGenerateColumns="False"
-          IsReadOnly="True"
-          ItemsSource="{Binding Users}"
-          SelectionMode="Single"
-          Margin="0,0,0,10">
-			<DataGrid.Columns>
-				<DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="50"/>
-				<DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
-				<DataGridTextColumn Header="Surname" Binding="{Binding Surname}" Width="*"/>
-				<DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
-				<DataGridTextColumn Header="Date Of Birth" Binding="{Binding DateOfBirth}" Width="*"/>
-				<DataGridTextColumn Header="Age" Binding="{Binding Age}" Width="50"/>
-				<DataGridCheckBoxColumn Header="Is Adult" Binding="{Binding IsAdult}" Width="70"/>
-				<DataGridTextColumn Header="Sun Sign" Binding="{Binding SunSign}" Width="100"/>
-				<DataGridTextColumn Header="Chinese Sign" Binding="{Binding ChineseSign}" Width="100"/>
-				<DataGridCheckBoxColumn Header="Is Birthday" Binding="{Binding IsBirthday}" Width="80"/>
-			</DataGrid.Columns>
-		</DataGrid>
-	</Grid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,38,0,0" VerticalAlignment="Top">
+            <Button x:Name="AddUserButton" Content="Add" Height="40" Width="110" Margin="0,0,20,0" Background="#FF4DCC31" FontSize="18" FontWeight="Bold" Foreground="#ffff"/>
+            <Button x:Name="EditUserButton" Content="Edit" Height="40" Width="110" Margin="0,0,20,0" FontSize="18" FontWeight="Bold" Background="#FFE8E411" Foreground="#ffff"/>
+            <Button x:Name="DeleteUserButton" Content="Delete" Height="40" Width="110" Margin="0,0,20,0" Background="#FFFA0F0F" FontSize="18" FontWeight="Bold" Foreground="#ffff"/>
+        </StackPanel>
+
+        <DataGrid x:Name="UserDataGrid"
+		  AutoGenerateColumns="False"
+		  IsReadOnly="True"
+		  ItemsSource="{Binding Users}"
+		  SelectionMode="Single"
+		  Margin="0,204,0,8" Grid.RowSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="50"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
+                <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" Width="*"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
+                <DataGridTextColumn Header="Date Of Birth" Binding="{Binding DateOfBirth}" Width="*"/>
+                <DataGridTextColumn Header="Age" Binding="{Binding Age}" Width="50"/>
+                <DataGridCheckBoxColumn Header="Is Adult" Binding="{Binding IsAdult}" Width="70"/>
+                <DataGridTextColumn Header="Sun Sign" Binding="{Binding SunSign}" Width="100"/>
+                <DataGridTextColumn Header="Chinese Sign" Binding="{Binding ChineseSign}" Width="100"/>
+                <DataGridCheckBoxColumn Header="Is Birthday" Binding="{Binding IsBirthday}" Width="80"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+
 </Window>

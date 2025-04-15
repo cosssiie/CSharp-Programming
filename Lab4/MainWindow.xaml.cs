@@ -212,6 +212,40 @@ namespace Lab4
                 MessageBox.Show("Please select a user to delete.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+        private void ApplyFilterButton_Click(object sender, RoutedEventArgs e)
+        {
+            var filtered = _users.Where(user =>
+                (string.IsNullOrWhiteSpace(FilterName.Text) || user.Name?.Contains(FilterName.Text, StringComparison.OrdinalIgnoreCase) == true) &&
+                (string.IsNullOrWhiteSpace(FilterSurname.Text) || user.Surname?.Contains(FilterSurname.Text, StringComparison.OrdinalIgnoreCase) == true) &&
+                (string.IsNullOrWhiteSpace(FilterEmail.Text) || user.Email?.Contains(FilterEmail.Text, StringComparison.OrdinalIgnoreCase) == true) &&
+                (!FilterDOB.SelectedDate.HasValue || user.DateOfBirth?.Date == FilterDOB.SelectedDate.Value.Date) &&
+                (string.IsNullOrWhiteSpace(FilterAge.Text) || (user.Age.HasValue && user.Age.Value.ToString() == FilterAge.Text)) &&
+                (FilterIsAdult.SelectedIndex == 0 || (FilterIsAdult.SelectedIndex == 1 && user.IsAdult == true) || (FilterIsAdult.SelectedIndex == 2 && user.IsAdult == false)) &&
+                (string.IsNullOrWhiteSpace(FilterSunSign.Text) || user.SunSign?.Contains(FilterSunSign.Text, StringComparison.OrdinalIgnoreCase) == true) &&
+                (string.IsNullOrWhiteSpace(FilterChineseSign.Text) || user.ChineseSign?.Contains(FilterChineseSign.Text, StringComparison.OrdinalIgnoreCase) == true) &&
+                (FilterIsBirthday.SelectedIndex == 0 || (FilterIsBirthday.SelectedIndex == 1 && user.IsBirthday == true) || (FilterIsBirthday.SelectedIndex == 2 && user.IsBirthday == false))
+            ).ToList();
+
+            UserDataGrid.ItemsSource = null;
+            UserDataGrid.ItemsSource = filtered;
+        }
+
+        private void ResetFiltersButton_Click(object sender, RoutedEventArgs e)
+        {
+            FilterName.Text = "";
+            FilterSurname.Text = "";
+            FilterEmail.Text = "";
+            FilterDOB.SelectedDate = null;
+            FilterAge.Text = "";
+            FilterIsAdult.SelectedIndex = 0;
+            FilterSunSign.Text = "";
+            FilterChineseSign.Text = "";
+            FilterIsBirthday.SelectedIndex = 0;
+
+            UserDataGrid.ItemsSource = null;
+            UserDataGrid.ItemsSource = _users;
+        }
+
 
         private void SaveUsersToJson()
         {
