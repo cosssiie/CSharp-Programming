@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Users Table" Height="550" Width="920">
 
-    <Grid Margin="0,0,0,0" Height="550">
+    <Grid Margin="0,0,0,0" Height="520">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -38,9 +38,9 @@
 
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,38,0,0" VerticalAlignment="Top">
-            <Button x:Name="AddUserButton" Content="Add" Height="40" Width="110" Margin="0,0,20,0" Background="#FF4DCC31" FontSize="18" FontWeight="Bold" Foreground="#ffff"/>
-            <Button x:Name="EditUserButton" Content="Edit" Height="40" Width="110" Margin="0,0,20,0" FontSize="18" FontWeight="Bold" Background="#FFE8E411" Foreground="#ffff"/>
-            <Button x:Name="DeleteUserButton" Content="Delete" Height="40" Width="110" Margin="0,0,20,0" Background="#FFFA0F0F" FontSize="18" FontWeight="Bold" Foreground="#ffff"/>
+            <Button x:Name="AddUserButton" Content="Add" Height="40" Width="110" Margin="0,0,20,0" Background="#FF4DCC31" FontSize="18" FontWeight="Bold" Foreground="#ffff" Click="AddUserButton_Click"/>
+            <Button x:Name="EditUserButton" Content="Edit" Height="40" Width="110" Margin="0,0,20,0" FontSize="18" FontWeight="Bold" Background="#FFE8E411" Foreground="#ffff" Click="EditUserButton_Click"/>
+            <Button x:Name="DeleteUserButton" Content="Delete" Height="40" Width="110" Margin="0,0,20,0" Background="#FFFA0F0F" FontSize="18" FontWeight="Bold" Foreground="#ffff" Click="DeleteUserButton_Click"/>
         </StackPanel>
 
         <DataGrid x:Name="UserDataGrid"
