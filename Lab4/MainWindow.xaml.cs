@@ -27,7 +27,6 @@ namespace Lab4
             {
                 if (File.Exists(_jsonFilePath))
                 {
-                    Console.WriteLine($"Loading from: {_jsonFilePath}");
                     string jsonData = await File.ReadAllTextAsync(_jsonFilePath);
                     var loadedUsers = JsonConvert.DeserializeObject<List<User>>(jsonData) ?? new List<User>();
 
@@ -212,6 +211,7 @@ namespace Lab4
                 MessageBox.Show("Please select a user to delete.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
         private void ApplyFilterButton_Click(object sender, RoutedEventArgs e)
         {
             var filtered = _users.Where(user =>
